@@ -1,0 +1,28 @@
+.tiles-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background-color: #fcfcfc;
+}
+
+.tile-elements {
+    border-radius: 10px;
+    background-color: #ebf2ff;
+    width: 5cm;
+    height: 5cm;
+    font-size: 30px;
+}
+
+.carousel-height {
+    max-height: 8cm;
+}
+
+.image-size {
+    height: auto;
+    width: 100%;
+}
+
+.navbar-menu-move {
+    position: absolute;
+    left: -2cm;
+}
