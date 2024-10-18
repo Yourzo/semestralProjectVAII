@@ -20,8 +20,6 @@
     min-width: 13cm;
 }
 
-.side-panel {
-}
-
-.active-desk {
+.min-vh-100-custom {
+    min-height: calc(100vh - 56px);
 }
