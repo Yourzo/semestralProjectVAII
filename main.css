@@ -38,6 +38,11 @@
     flex: 1;
 }
 
+.my-grid {
+    display: grid;
+    align-items: start;
+}
+
 .text-header {
     margin-bottom: auto;
 }
