@@ -1,3 +1,7 @@
+ol {
+    list-style-type: none;
+}
+
 .carousel-height {
     max-height: 8cm;
 }
@@ -12,6 +16,10 @@
     flex-wrap: wrap;
     width: 100vw;
     justify-content: space-evenly;
+}
+.list-div{
+    flex: auto;
+    width: 100%;
 }
 
 .ideas-item {
@@ -29,7 +37,14 @@
     flex-wrap: nowrap;
 }
 
-.desk-tile {
+.desk-tiles {
+    flex: auto;
+    background-color: #b6b6ae !important;
+    margin: 5px;
+    border-radius: 5px !important;
+}
+
+.desk-columns {
     display: flex;
     flex-wrap: nowrap;
     min-width: 8cm;
@@ -45,4 +60,5 @@
 
 .text-header {
     margin-bottom: auto;
+    height: auto;
 }
