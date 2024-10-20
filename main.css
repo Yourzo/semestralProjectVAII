@@ -26,6 +26,14 @@ ol {
     flex: 1;
     padding: 20px;
     min-width: 13cm;
+    height: 100%;
+}
+.margin-top-under-nav {
+    margin-top: 56px;
+}
+
+.register-width {
+    width: 50% !important;
 }
 
 .min-vh-100-custom {
