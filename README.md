@@ -2,6 +2,7 @@
 
 it's laravel project, sorry if i wasn't supposed to force git push
 <h2>HOW TO RUN:</h2>
+
 * download the project
 * create copy of .env.example called .env
 * install all npm dependencies with `npm install`
