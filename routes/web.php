@@ -2,14 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::view('/', 'index')->name('index');
 
-Route::get('/desk', function () {
-    return view('desk');
-});
+Route::view('/desk', 'desk')->name('desk');
 
-Route::get('/register', function () {
-    return view('register');
-});
+Route::view('/register', 'register')->name('register');

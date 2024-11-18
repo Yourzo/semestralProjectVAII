@@ -1,5 +1,5 @@
 <x-navbar>
-    <div class="container-fluid margin-top-under-nav">
+    <div class="container-fluid ">
         <div class="row flex-nowrap">
             <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0">
                 <div class="d-flex flex-column align-items-baseline align-items-sm-start px-3 pt-2 text-white min-vh-100-custom bg-dark">

@@ -18,23 +18,23 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="index.html">Vrello</a>
+        <a class="navbar-brand" href="{{route('index')}}">Vrello</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="nav navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{{route('index')}}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="desksView.html">Desks</a>
+                    <a class="nav-link" href="{{route('desk')}}">Desks</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="registerForm.html">Login</a>
+                    <a class="nav-link" href="{{route('register')}}">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="registerForm.html" tabindex="-1" aria-disabled="false">Get into VRELLO</a>
+                    <a class="nav-link" href="{{route('register')}}" tabindex="-1" aria-disabled="false">Get into VRELLO</a>
                 </li>
             </ul>
         </div>
