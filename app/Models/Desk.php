@@ -12,8 +12,8 @@ class Desk extends Model
         return $this->belongsToMany(
             User::class,
             'users_desks',
-            'desk_id',
-            'user_id'
+            'user_id',
+            'desk_id'
         );
     }
 }
