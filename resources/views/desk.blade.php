@@ -77,7 +77,6 @@
                 </div>
             </div>
 
-            <!-- Main Content Area -->
             <div class="col">
                 <div class="d-flex gap-4">
                     <!-- To Do Column -->
@@ -88,8 +87,10 @@
                             </div>
                         </div>
                         <div class="list-div mt-1">
+                            <ul class="list-group list-group-flush draggable-list min-height-100">
+                                <li draggable="true" class="list-group-item desk-tiles">Bring me a horizon</li>
+                            </ul>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item desk-tiles">Bring me a horizon</li>
                                 <li class="list-group-item desk-tiles"><i class="bi bi-plus-circle"></i></li>
                             </ul>
                         </div>
@@ -101,9 +102,11 @@
                             <span class="text-xl font-semibold">Doing</span>
                         </div>
                         <div class="list-div mt-1">
+                            <ul class="list-group list-group-flush draggable-list min-height-100">
+                                <li draggable="true" class="list-group-item desk-tiles">Water the plants</li>
+                                <li draggable="true" class="list-group-item desk-tiles">Clean the kitchen</li>
+                            </ul>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item desk-tiles">Water the plants</li>
-                                <li class="list-group-item desk-tiles">Clean the kitchen</li>
                                 <li class="list-group-item desk-tiles"><i class="bi bi-plus-circle"></i></li>
                             </ul>
                         </div>
@@ -115,8 +118,9 @@
                             <span class="text-xl font-semibold">Done</span>
                         </div>
                         <div class="list-div mt-1">
-                            <ul>
-                                <!-- Add completed tasks here -->
+                            <ul class="list-group list-group-flush draggable-list min-height-100">
+                            </ul>
+                            <ul class="list-group list-group-flush">
                                 <li class="list-group-item desk-tiles"><i class="bi bi-plus-circle"></i></li>
                             </ul>
                         </div>
@@ -125,4 +129,7 @@
             </div>
         </div>
     </div>
+    @push('scripts')
+        @vite('resources/js/dragAndDrop.js')
+    @endpush
 </x-navbar>
