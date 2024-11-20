@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('desk_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('desk_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->nullOnDelete();
             $table->string('name');
             $table->string('description')->nullable();
             $table->enum('status', ['todo', 'done', 'doing']);
