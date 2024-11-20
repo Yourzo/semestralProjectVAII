@@ -1,8 +1,9 @@
 <x-navbar>
-    <div class="container-fluid ">
+    <div class="container-fluid">
         <div class="row flex-nowrap">
+            <!-- Sidebar -->
             <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0">
-                <div class="d-flex flex-column align-items-baseline align-items-sm-start px-3 pt-2 text-white min-vh-100-custom bg-dark">
+                <div class="d-flex flex-column align-items-baseline align-items-sm-start px-3 pt-2 text-white min-vh-100 bg-dark">
                     <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                         <span class="fs-5 d-none d-sm-inline">Menu</span>
                     </a>
@@ -64,53 +65,60 @@
                             <img src="images/noPFP.jpg" alt="pfp" width="30" height="30" class="rounded-circle">
                             <span class="d-none d-sm-inline mx-1">Pro Vrello user</span>
                         </a>
-                        <!--          user mini menu-->
+                        <!-- User mini menu -->
                         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
                             <li><a class="dropdown-item" href="#">New desk...</a></li>
                             <li><a class="dropdown-item" href="#">Settings</a></li>
                             <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
+                            <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="index.html">Sign out</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
+
+            <!-- Main Content Area -->
             <div class="col">
-                <!--      here I will add tree columns: to do, worked on and done they will be able to move around tiles in these -->
-                <div class="whole-desk">
+                <div class="d-flex gap-4">
+                    <!-- To Do Column -->
                     <div class="desk-columns min-vh-100-custom flex-column">
-                        <div class="text-header">
-                            <span>To do</span>
-                        </div>
-                        <div class="list-div mt-1 ">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item desk-tiles">Bring me a horizon</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="desk-columns min-vh-100-custom flex-column">
-                        <div class="text-header">
-                            <span>Doing</span>
-                        </div>
-                        <div class="list-div mt-1 ">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item desk-tiles">Water the plants</li>
-                            </ul>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item desk-tiles">clean the kitchen</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="desk-columns min-vh-100-custom flex-column">
-                        <div class="text-header">
-                            <span>Done</span>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="flex-grow-1 text-center">
+                                <span class="text-xl font-semibold">To Do</span>
+                            </div>
                         </div>
                         <div class="list-div mt-1">
-                            <ol>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item desk-tiles">Bring me a horizon</li>
+                                <li class="list-group-item desk-tiles"><i class="bi bi-plus-circle"></i></li>
+                            </ul>
+                        </div>
+                    </div>
 
-                            </ol>
+                    <!-- Doing Column -->
+                    <div class="desk-columns min-vh-100-custom flex-column">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="text-xl font-semibold">Doing</span>
+                        </div>
+                        <div class="list-div mt-1">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item desk-tiles">Water the plants</li>
+                                <li class="list-group-item desk-tiles">Clean the kitchen</li>
+                                <li class="list-group-item desk-tiles"><i class="bi bi-plus-circle"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Done Column -->
+                    <div class="desk-columns min-vh-100-custom flex-column">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="text-xl font-semibold">Done</span>
+                        </div>
+                        <div class="list-div mt-1">
+                            <ul>
+                                <!-- Add completed tasks here -->
+                                <li class="list-group-item desk-tiles"><i class="bi bi-plus-circle"></i></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
