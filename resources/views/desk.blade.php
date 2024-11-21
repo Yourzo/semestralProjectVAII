@@ -95,7 +95,7 @@
                             </div>
                         </div>
                         <div class="list-div mt-1">
-                            <ul class="list-group list-group-flush draggable-list min-height-100">
+                            <ul class="list-group list-group-flush draggable-list min-height-drag">
                                 <li draggable="true" class="list-group-item desk-tiles">Bring me a horizon</li>
                             </ul>
                             <ul class="list-group list-group-flush">
@@ -110,7 +110,7 @@
                             <span class="text-xl font-semibold">Doing</span>
                         </div>
                         <div class="list-div mt-1">
-                            <ul class="list-group list-group-flush draggable-list min-height-100">
+                            <ul class="list-group list-group-flush draggable-list min-height-drag">
                                 <li draggable="true" class="list-group-item desk-tiles">Water the plants</li>
                                 <li draggable="true" class="list-group-item desk-tiles">Clean the kitchen</li>
                             </ul>
@@ -126,7 +126,7 @@
                             <span class="text-xl font-semibold">Done</span>
                         </div>
                         <div class="list-div mt-1">
-                            <ul class="list-group list-group-flush draggable-list min-height-100">
+                            <ul class="list-group list-group-flush draggable-list min-height-drag">
                             </ul>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item desk-tiles"><i class="bi bi-plus-circle"></i></li>
