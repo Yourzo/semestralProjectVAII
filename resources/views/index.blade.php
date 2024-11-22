@@ -1,4 +1,4 @@
-<x-navbar>
+<x-app-layout>
     <x-footer>
 <!--Carousel add screenshot of actual working app like to show potential customers-->
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -84,4 +84,4 @@
     </div>
 </div>
     </x-footer>
-</x-navbar>
+</x-app-layout>

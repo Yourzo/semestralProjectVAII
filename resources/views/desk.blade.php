@@ -1,4 +1,4 @@
-<x-navbar>
+<x-app-layout>
     <div class="container-fluid">
         <div class="row flex-nowrap">
             <!-- Sidebar -->
@@ -140,4 +140,4 @@
     @push('scripts')
         @vite('resources/js/dragAndDrop.js')
     @endpush
-</x-navbar>
+</x-app-layout>

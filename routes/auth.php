@@ -35,7 +35,7 @@ Route::middleware('guest')->group(function () {
         ->name('password.store');
 
     Route::get('/desk', function () {
-        return view('register');
+        return view('auth.login');
     })->name('desk');
 });
 
@@ -64,5 +64,4 @@ Route::middleware('auth')->group(function () {
     Route::get('/desk', function () {
         return view('desk');
     })->name('desk');
-
 });
