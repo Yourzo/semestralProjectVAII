@@ -23,8 +23,9 @@
             </ul>
         </div>
         @auth
-            @include('layouts.profiledrop')
-
+            <div class="dropdown profile-right">
+                @include('layouts.profiledrop')
+            </div>
         @endauth
     </div>
 </nav>

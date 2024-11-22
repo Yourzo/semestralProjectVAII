@@ -75,3 +75,11 @@ ol {
 .min-height-drag {
     min-height: 45px !important;
 }
+
+.shortened {
+    height: calc(100vh - 56px);
+}
+
+.profile-right {
+    padding-right: 5rem;
+}

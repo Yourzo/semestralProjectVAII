@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Desk;
 use Illuminate\View\View;
 
 class DeskController extends Controller
 {
     public function show() : View
     {
-        $user = User::find(1);
+        $allDesks = User::find(auth()->id())->desks;
+        return view('desk', compact('allDesks'));
     }
 }

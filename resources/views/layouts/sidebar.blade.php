@@ -1,5 +1,5 @@
-<div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0">
-    <div class="d-flex flex-column align-items-baseline align-items-sm-start px-3 pt-2 text-white min-vh-100 bg-dark">
+<div class="col-auto col-md-3 col-xl-2 px-0 ">
+    <div class="d-flex flex-column align-items-baseline align-items-sm-start px-3 pt-2 text-white bg-dark shortened">
         <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
             <span class="fs-5 d-none d-sm-inline">Menu</span>
         </a>
@@ -10,20 +10,18 @@
             </li>
             <li>
                 <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+
                     <i class="fs-4 bi-window-desktop"></i> <span class="ms-1 d-none d-sm-inline">Your Vrello desks</span> </a>
                 <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                    @foreach($allDesks as $desk)
                     <li class="w-100">
                         <a href="#" class="nav-link px-1">
                             <i class="fs-4 bi-archive"></i>
-                            <span class="d-none d-sm-inline">Housework</span>
+                            <span class="d-none d-sm-inline">{{$desk->name}}</span>
                         </a>
                     </li>
+                    @endforeach
                     <li>
-                        <a href="#" class="nav-link px-1">
-                            <i class="fs-4 bi-archive"></i>
-                            <span class="d-none d-sm-inline">Toilet cleaning schedule</span>
-                        </a>
-                    </li>
                 </ul>
             </li>
             <li>
@@ -57,6 +55,8 @@
         </ul>
         <hr>
         <!-- User mini menu -->
-        @include('layouts.profiledrop')
+        <div class="dropdown pb-4">
+            @include('layouts.profiledrop')
+        </div>
     </div>
 </div>
