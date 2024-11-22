@@ -7,11 +7,12 @@ it's laravel project, sorry if i wasn't supposed to force git push
 * download the project by running `git clone https://github.com/Yourzo/semestralProjectVAII`
 * go to project folder
 * create copy of .env.example called .env by running `cp .env.example .env`
-* install all npm dependencies with `npm install`
+* install all npm dependencies with `npm install` and `npm run build`
 * install all dependencies by running `composer install`
 * build docker-compose and all needed with: `php artisan sail:install` (choose mysql)
 * start docker
 * (if on wsl ubuntu take these [steps](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers) and restart the wsl)
 * to run it on docker: `./vendor/bin/sail up` you can add `-d` like with normal docker (first time run will take few minutes)
+* generate key by running `./vendor/bin/sail artisan key:generate`
 * migrate by running: `./vendor/bin/sail artisan migrate`
 * project should be running on `localhost`
