@@ -5,7 +5,7 @@
     </a>
     <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
         <li><a class="dropdown-item" href="#">New desk...</a></li>
-        <li><a class="dropdown-item" href="#">{{route('profile')}}</a></li>
+        <li><a class="dropdown-item" href="{{route('profile.edit')}}">Settings</a></li>
         <li><a class="dropdown-item" href="{{route('dashboard')}}">Profile</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><form method="POST" action="{{ route('logout') }}">
