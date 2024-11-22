@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{route('index')}}">Vrello</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,9 +23,8 @@
             </ul>
         </div>
         @auth
-            <a>
-                <img src="{{asset('/media/noPFP.png')}}" alt="pfp" height="30" width="30" class="rounded-circle">
-            </a>
+            @include('layouts.profiledrop')
+
         @endauth
     </div>
 </nav>
