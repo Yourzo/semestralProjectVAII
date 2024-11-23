@@ -39,8 +39,8 @@
                 </ul>
             </li>
             <li>
-                <a href="#" class="nav-link px-0 align-middle">
-                    <i class="fs-4 bi-person-add"></i> <span class="ms-1 d-none d-sm-inline">Add users to desk</span></a>
+                <a href="{{route('desk.edit',['desk' => $deskId])}}" class="nav-link px-0 align-middle">
+                    <i class="fs-4 bi-pencil-fill"></i> <span class="ms-1 d-none d-sm-inline">Edit the desk</span></a>
             </li>
         </ul>
         <hr>

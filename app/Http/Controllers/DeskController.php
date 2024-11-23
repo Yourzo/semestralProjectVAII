@@ -17,15 +17,11 @@ class DeskController extends Controller
     }
     public function show(Request $request) : View
     {
-        $deskId = request('desk_id');
+        $deskId = request('desk');
         $allDesks = User::find(auth()->id())->desks;
-        if ($deskId !== null) {
-            $deskId = $allDesks->where('id', $deskId)->first();
-        }
         $allDeskUsers = User::whereHas('desks', function ($query) use ($deskId) {
             $query->where('id', $deskId);
         });
-
         return view('desk.show', compact('deskId', 'allDesks', 'allDeskUsers'));
     }
 
@@ -49,5 +45,15 @@ class DeskController extends Controller
         $desk->save();
         $user->desks()->attach($desk->id);
         return redirect()->route('desk.show', ['desk' => $desk->id]);
+    }
+
+    public function edit(int $id): View
+    {
+        return view('desk.edit');
+    }
+
+    public function update(Request $request, int $id): RedirectResponse
+    {
+        return redirect()->route('desk.show', ['desk' => $id]);
     }
 }
