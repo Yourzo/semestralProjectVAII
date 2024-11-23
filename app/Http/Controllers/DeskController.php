@@ -17,14 +17,16 @@ class DeskController extends Controller
     }
     public function show(Request $request) : View
     {
-        //$deskId = request('desk_id');
+        $deskId = request('desk_id');
         $allDesks = User::find(auth()->id())->desks;
-//        if ($deskId !== null) {
-//            $deskId = $allDesks->where('id', $deskId)->first();
-//        }
-//        $allDeskUsers = Desk::find($deskId)->users;
+        if ($deskId !== null) {
+            $deskId = $allDesks->where('id', $deskId)->first();
+        }
+        $allDeskUsers = User::whereHas('desks', function ($query) use ($deskId) {
+            $query->where('id', $deskId);
+        });
 
-        return view('desk.show', compact('allDesks'));
+        return view('desk.show', compact('deskId', 'allDesks', 'allDeskUsers'));
     }
 
     public function create() : View

@@ -15,7 +15,7 @@
                 <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                     @foreach($allDesks as $desk)
                     <li class="w-100">
-                        <a href="#" class="nav-link px-1">
+                        <a href="{{route('desk.show',['desk' => $desk->id])}}" class="nav-link px-1">
                             <i class="fs-4 bi-archive"></i>
                             <span class="d-none d-sm-inline">{{$desk->name}}</span>
                         </a>
@@ -28,24 +28,14 @@
                 <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                     <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Your TEAM in this desk</span> </a>
                 <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                    @foreach($allDeskUsers as $user)
                     <li class="w-100">
                         <a href="#" class="nav-link px-1">
                             <img src="{{asset('media/noPFP.png')}}" alt="pfp" width="30" height="30" class="rounded-circle">
-                            <span class="d-none d-sm-inline">Mike Oxlong</span>
+                            <span class="d-none d-sm-inline">{{$user->name}}</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#" class="nav-link px-1">
-                            <img src="{{asset('media/noPFP.png')}}" alt="pfp" width="30" height="30" class="rounded-circle">
-                            <span class="d-none d-sm-inline">Phil McCracken</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-1">
-                            <img src="{{asset('media/noPFP.png')}}" alt="pfp" width="30" height="30" class="rounded-circle">
-                            <span class="d-none d-sm-inline">Gene Attel</span>
-                        </a>
-                    </li>
+                    @endforeach
                 </ul>
             </li>
             <li>

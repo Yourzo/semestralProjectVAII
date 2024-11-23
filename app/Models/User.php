@@ -52,7 +52,7 @@ class User extends Authenticatable
         return $this->belongsToMany(
             Desk::class,
             'users_desks',
-            'desk_id',
-            'user_id');
+            'user_id',
+            'desk_id');
     }
 }
