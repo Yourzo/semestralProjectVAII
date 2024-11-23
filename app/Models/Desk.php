@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Desk extends Model
 {
+    protected $fillable = ['name', 'description'];
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(

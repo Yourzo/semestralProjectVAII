@@ -62,5 +62,7 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 
-    Route::get('/desk', [DeskController::class, 'show'])->name('desk');
+    Route::get('desk', [DeskController::class, 'show'])->name('desk');
+
+    Route::resource('desk', DeskController::class);
 });
