@@ -49,7 +49,8 @@ class DeskController extends Controller
 
     public function edit(int $id): View
     {
-        return view('desk.edit');
+
+        return view('desk.edit', compact('id'));
     }
 
     public function update(Request $request, int $id): RedirectResponse
