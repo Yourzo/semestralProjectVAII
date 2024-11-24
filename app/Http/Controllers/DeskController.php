@@ -49,12 +49,19 @@ class DeskController extends Controller
 
     public function edit(int $id): View
     {
-
-        return view('desk.edit', compact('id'));
+        $desk = Desk::find($id);
+        return view('desk.edit', compact('desk'));
     }
 
     public function update(Request $request, int $id): RedirectResponse
     {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'description' => ['nullable' ,'string', 'max:1250'],
+        ]);
+        $desk = Desk::find($id);
+        $desk->update($request->only(['name', 'description']));
+        $desk->save();
         return redirect()->route('desk.show', ['desk' => $id]);
     }
 }

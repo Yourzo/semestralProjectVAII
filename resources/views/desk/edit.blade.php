@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-center">
         <div class="mt-5 bg-secondary rounded border border-dark">
             <div class="mt-2">
-                <form method="post" action="{{route('desk.update', ['desk' => 'id'])}}">
+                <form method="post" action="{{route('desk.update', ['desk' => $desk->id])}}">
                     @csrf
                     @method('PUT')
 
