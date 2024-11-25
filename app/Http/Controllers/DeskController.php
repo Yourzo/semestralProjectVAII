@@ -19,9 +19,8 @@ class DeskController extends Controller
     {
         $deskId = request('desk');
         $allDesks = User::find(auth()->id())->desks;
-        $allDeskUsers = User::whereHas('desks', function ($query) use ($deskId) {
-            $query->where('id', $deskId);
-        });
+        $userIds = Desk::find($deskId)->users()->withPivot('user_id')->pluck('user_id');
+        $allDeskUsers = User::whereIn('id', $userIds)->where('id', '!=', auth()->id())->get();
         return view('desk.show', compact('deskId', 'allDesks', 'allDeskUsers'));
     }
 
@@ -35,6 +34,7 @@ class DeskController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable' ,'string', 'max:1250'],
+            'username' => ['string', 'max:255', 'exists:users,name'],
         ]);
 
         if (!auth()->check()) {
@@ -44,6 +44,10 @@ class DeskController extends Controller
         $desk = Desk::create($request->only(['name', 'description']));
         $desk->save();
         $user->desks()->attach($desk->id);
+        if ($request->username !== '') {
+            $otherUser = User::where('name',$request->username)->first();
+            $otherUser->desks()->attach($desk->id);
+        }
         return redirect()->route('desk.show', ['desk' => $desk->id]);
     }
 
@@ -56,11 +60,21 @@ class DeskController extends Controller
     public function update(Request $request, int $id): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['string', 'max:255'],
             'description' => ['nullable' ,'string', 'max:1250'],
+            'username' => ['string', 'max:255', 'exists:users,name']
         ]);
         $desk = Desk::find($id);
-        $desk->update($request->only(['name', 'description']));
+        if ($request->name !== '') {
+            $desk->update($request->only(['name']));
+        }
+        if ($request->description !== '') {
+            $desk->update($request->only(['description']));
+        }
+        if ($request->username !== '') {
+            $user = User::where('name',$request->username)->first();
+            $user->desks()->attach($desk->id);
+        }
         $desk->save();
         return redirect()->route('desk.show', ['desk' => $id]);
     }
