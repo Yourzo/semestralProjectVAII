@@ -11,7 +11,7 @@ use Illuminate\View\View;
 
 class DeskController extends Controller
 {
-    public function index(): RedirectResponse
+    public function index(): RedirectResponse //TODO create view that will show all desks of current user
     {
         return redirect()->route('desk.show');
     }
@@ -22,6 +22,12 @@ class DeskController extends Controller
         $userIds = Desk::find($deskId)->users()->withPivot('user_id')->pluck('user_id');
         $allDeskUsers = User::whereIn('id', $userIds)->where('id', '!=', auth()->id())->get();
         return view('desk.show', compact('deskId', 'allDesks', 'allDeskUsers'));
+    }
+
+    public function destroy(Desk $desk): RedirectResponse
+    {
+        $desk->delete();
+        return redirect()->route('desk.show'); //
     }
 
     public function create() : View
