@@ -10,7 +10,7 @@
                     <a class="nav-link active" aria-current="page" href="{{route('index')}}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('desk.show', ['desk' => '1'])}}">Desks</a>
+                    <a class="nav-link" href="{{route('desk.index')}}">Desks</a>
                 </li>
                 @guest
                 <li class="nav-item">

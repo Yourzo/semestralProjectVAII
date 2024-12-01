@@ -11,9 +11,10 @@ use Illuminate\View\View;
 
 class DeskController extends Controller
 {
-    public function index(): RedirectResponse //TODO create view that will show all desks of current user
+    public function index(): View
     {
-        return redirect()->route('desk.show');
+        $desks = User::find(auth()->id())->desks;
+        return view('desk.index',compact('desks'));
     }
     public function show(Request $request) : View
     {
