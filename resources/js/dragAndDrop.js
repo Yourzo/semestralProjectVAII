@@ -1,35 +1,53 @@
-// Get all UL elements with the class "draggable-list"
 let lists = document.querySelectorAll('.draggable-list');
-
-// Add event listeners to each UL for drag-and-drop operations
 lists.forEach(list => {
-    // Allow the list to be a drop target
     list.addEventListener('dragover', function(event) {
-        event.preventDefault(); // Allow drop by preventing the default behavior
+        event.preventDefault();
     });
 
-    // Handle the drop event when a li is dropped onto a list
     list.addEventListener('drop', function(event) {
-        event.preventDefault(); // Prevent default behavior (open as link for example)
+        event.preventDefault();
 
-        // Get the dragged li element and append it to the target list
         const draggedElement = document.querySelector('.dragging');
         list.appendChild(draggedElement);
 
-        // Remove the "dragging" class after drop
         draggedElement.classList.remove('dragging');
+        updateDeskOrder(list, draggedElement);
     });
 });
 
-// Handle the dragstart event to mark the dragged item
 document.querySelectorAll('li').forEach(item => {
     item.addEventListener('dragstart', function(event) {
-        // Add a "dragging" class to the item being dragged
         item.classList.add('dragging');
     });
 
     item.addEventListener('dragend', function() {
-        // Remove the "dragging" class after the drag ends
         item.classList.remove('dragging');
     });
 });
+
+//AJAX:
+function updateDeskOrder(list, draggedElement) {
+    const taskId = draggedElement.getAttribute('data-task-id');
+    const destColumn = list.getAttribute('data-column');
+    const deskId = list.closest('.desk-columns').getAttribute('data-desk-id');
+    fetch(`/set-tasks/${deskId}`,{
+        method: 'POST',
+        headers: {
+            'Content-Type' : 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify({
+            dest_column: destColumn,
+            task_id: taskId,
+        })
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log("Tasks order updated successfully");
+            } else {
+                console.error('Failed to update tasks')
+            }
+        })
+        .catch(error => console.error('Error: ', error));
+}

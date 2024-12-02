@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use App\Models\User;
 use App\Models\Desk;
 use Illuminate\Http\RedirectResponse;
@@ -21,7 +22,14 @@ class DeskController extends Controller
         $allDesks = User::find(auth()->id())->desks;
         $userIds = Desk::find($deskId)->users()->withPivot('user_id')->pluck('user_id');
         $allDeskUsers = User::whereIn('id', $userIds)->where('id', '!=', auth()->id())->get();
-        return view('desk.show', compact('deskId', 'allDesks', 'allDeskUsers'));
+
+        $todo = Task::where([['desk_id', $deskId], ['status', 'todo']])->get();
+        $doing = Task::where([['desk_id', $deskId], ['status', 'doing']])->get();
+        $done = Task::where([['desk_id', $deskId], ['status', 'done']])->get();
+        return view('desk.show', compact('deskId',
+            'allDesks', 'allDeskUsers',
+                'todo', 'doing', 'done'
+        ));
     }
 
     public function destroy(Desk $desk): RedirectResponse

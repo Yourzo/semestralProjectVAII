@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -65,4 +66,8 @@ Route::middleware('auth')->group(function () {
     Route::get('desk', [DeskController::class, 'show'])->name('desk');
 
     Route::resource('desk', DeskController::class);
+
+
+    Route::post('/set-tasks/{deskId}', [AjaxController::class, 'setTasks'])->name('setTasks');
+    Route::post('/create-task/{deskId}', [AjaxController::class, 'createTask'])->name('createTask');
 });
