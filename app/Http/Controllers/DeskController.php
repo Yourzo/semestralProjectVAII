@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Desk;
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -28,7 +27,7 @@ class DeskController extends Controller
     public function destroy(Desk $desk): RedirectResponse
     {
         $desk->delete();
-        return redirect()->route('desk.show'); //
+        return redirect()->route('desk.index');
     }
 
     public function create() : View

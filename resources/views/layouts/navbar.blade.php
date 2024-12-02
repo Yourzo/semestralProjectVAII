@@ -21,11 +21,11 @@
                 </li>
                 @endguest
             </ul>
+            @auth
+                <div class="nav-item dropdown profile-right">
+                    @include('layouts.profiledrop')
+                </div>
+            @endauth
         </div>
-        @auth
-            <div class="dropdown profile-right">
-                @include('layouts.profiledrop')
-            </div>
-        @endauth
     </div>
 </nav>

@@ -81,5 +81,7 @@ ol {
 }
 
 .profile-right {
-    padding-right: 5rem;
+    padding-right: 4rem;
+    margin-left: auto;
+    float: right;
 }
