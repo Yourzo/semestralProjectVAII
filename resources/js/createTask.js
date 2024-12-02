@@ -1,7 +1,9 @@
+console.log("djasfbisudfs32456475");
+
 document.getElementById('create-task-btn').addEventListener('click', function() {
     const taskName = document.getElementById('task-name').value;
     const deskId = document.querySelector('.desk-columns').getAttribute('data-desk-id');
-
+    const column = 'todo';
     // Make sure the task name is not empty
     if (taskName.trim() === '') {
         alert('Please enter a task name');
@@ -9,7 +11,7 @@ document.getElementById('create-task-btn').addEventListener('click', function() 
     }
 
     // AJAX request to create the task
-    fetch(`/set-task/${deskId}`, {
+    fetch(`/create-task/${deskId}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -18,7 +20,7 @@ document.getElementById('create-task-btn').addEventListener('click', function() 
         body: JSON.stringify({
             name: taskName,
             desk_id: deskId,
-            column: 'todo',  // Set default to 'todo' or allow dynamic setting
+            column: column
         }),
     })
         .then(response => response.json())

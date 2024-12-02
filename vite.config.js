@@ -6,7 +6,7 @@ export default defineConfig({
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.js',
                 "resources/css/main.css", 'resources/js/dragAndDrop.js',
-                ],
+                "resources/js/createTask.js",],
             refresh: true,
         }),
     ],
