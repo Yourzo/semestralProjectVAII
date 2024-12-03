@@ -39,7 +39,7 @@ class AjaxController extends Controller
         $task->user_id = auth()->id();
         $task->status = $task_col;
         $task->save();
-        return response()->json(['success' => true, 'message' => 'Task created successfully.']);
+        return response()->json(['success' => true, 'task' => $task]);
     }
 
     public function getTasks(Request $request, $deskId) : JsonResponse

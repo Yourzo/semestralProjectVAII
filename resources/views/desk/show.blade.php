@@ -20,7 +20,6 @@
                                 @foreach($todo as $task)
                                     <li draggable="true" data-task-id="{{$task->id}}" class="list-group-item desk-tiles">{{$task->name}}</li>
                                 @endforeach
-                                    <li draggable="true" data-task-id="5" class="list-group-item desk-tiles">HEHE</li>
                             </ul>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item desk-tiles" data-bs-toggle="modal" data-bs-target="#createTaskModal" data-bs-whatever="todo">

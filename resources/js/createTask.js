@@ -34,9 +34,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 status: sourceCategory,
             }),
         })
-            .then((response) => {
-                if (response.ok) {
-                    alert('Task created successfully!');
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success) {
+                    appendTaskToColumn(data.task)
                 } else {
                     alert('Error creating task.');
                 }
@@ -47,3 +48,14 @@ document.addEventListener('DOMContentLoaded', function () {
         modalInstance.hide();
     });
 });
+
+function appendTaskToColumn(task) {
+    const column = document.querySelector(`[data-column="${task.status}"]`);
+    const newTaskElement = document.createElement('li');
+    newTaskElement.setAttribute('draggable', 'true');
+    newTaskElement.setAttribute('data-task-id', task.id);
+    newTaskElement.classList.add('list-group-item', 'desk-tiles');
+    newTaskElement.textContent = task.name;
+
+    column.appendChild(newTaskElement);
+}
