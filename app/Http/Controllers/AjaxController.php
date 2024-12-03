@@ -25,6 +25,12 @@ class AjaxController extends Controller
         return response()->json(['success' => true]);
     }
 
+    public function removeTask(Request $request, $deskId) : JsonResponse
+    {
+        Task::where('id', $request->task_id)->update(['status' => null]);
+        return response()->json(['success' => true]);
+    }
+
     public function createTask(Request $request, $deskId) : JsonResponse
     {
         $request->validate(['name' => 'required|string|max:255']);
