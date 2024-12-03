@@ -28,7 +28,7 @@ class AjaxController extends Controller
     public function createTask(Request $request, $deskId) : JsonResponse
     {
         $request->validate(['name' => 'required|string|max:255']);
-        $task_col = $request->task_col;
+        $task_col = $request->status;
         if (!in_array($task_col, ['todo', 'doing', 'done'])){
             return response()->json(['success' => false, 'message' => 'Invalid column parameter.']);
         }

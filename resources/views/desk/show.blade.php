@@ -23,7 +23,9 @@
                                     <li draggable="true" data-task-id="5" class="list-group-item desk-tiles">HEHE</li>
                             </ul>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item desk-tiles" data-bs-toggle="modal" data-bs-target="#createTaskModal"><i class="bi bi-plus-circle"></i></li>
+                                <li class="list-group-item desk-tiles" data-bs-toggle="modal" data-bs-target="#createTaskModal" data-bs-whatever="todo">
+                                    <i class="bi bi-plus-circle"></i>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -40,7 +42,9 @@
                                 @endforeach
                             </ul>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item desk-tiles" data-bs-toggle="modal" data-bs-target="#createTaskModal"><i class="bi bi-plus-circle"></i></li>
+                                <li class="list-group-item desk-tiles" data-bs-toggle="modal" data-bs-target="#createTaskModal" data-bs-whatever="doing">
+                                    <i class="bi bi-plus-circle"></i>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -57,7 +61,9 @@
                                 @endforeach
                             </ul>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item desk-tiles" data-bs-toggle="modal" data-bs-target="#createTaskModal"><i class="bi bi-plus-circle"></i></li>
+                                <li class="list-group-item desk-tiles" data-bs-toggle="modal" data-bs-target="#createTaskModal" data-bs-whatever="done">
+                                    <i class="bi bi-plus-circle"></i>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -65,8 +71,7 @@
             </div>
         </div>
     </div>
-    @push('scripts')
-        @vite(['resources/js/createTask.js', 'resources/js/dragAndDrop.js'])
-    @endpush
+    @vite('resources/js/dragAndDrop.js')
+    @vite('resources/js/createTask.js')
     @include('modals.create-task')
 </x-app-layout>

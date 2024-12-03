@@ -1,41 +1,49 @@
-console.log("djasfbisudfs32456475");
+document.addEventListener('DOMContentLoaded', function () {
+    const createTaskModal = document.getElementById('createTaskModal');
+    let sourceCategory = '';
+    let deskId = "";
 
-document.getElementById('create-task-btn').addEventListener('click', function() {
-    const taskName = document.getElementById('task-name').value;
-    const deskId = document.querySelector('.desk-columns').getAttribute('data-desk-id');
-    const column = 'todo';
-    // Make sure the task name is not empty
-    if (taskName.trim() === '') {
-        alert('Please enter a task name');
-        return;
-    }
+    createTaskModal.addEventListener('show.bs.modal', function (event) {
+        const triggerElement = event.relatedTarget;
+        sourceCategory = triggerElement.getAttribute('data-bs-whatever');
 
-    // AJAX request to create the task
-    fetch(`/create-task/${deskId}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-        },
-        body: JSON.stringify({
-            name: taskName,
-            desk_id: deskId,
-            column: column
-        }),
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Append the new task to the To Do list
-                const newTask = document.createElement('li');
-                newTask.classList.add('list-group-item', 'desk-tiles');
-                newTask.textContent = data.task.name; // Assuming the response has task data
-                newTask.setAttribute('data-task-id', data.task.id);
-                document.getElementById('todo-list').appendChild(newTask);
-                document.getElementById('task-name').value = ''; // Clear input field
-            } else {
-                console.error('Failed to create task');
-            }
+        const columnElement = triggerElement.closest('.desk-columns');
+        deskId = columnElement.getAttribute('data-desk-id');
+
+        const modalTitle = createTaskModal.querySelector('.modal-title');
+        modalTitle.textContent = `Create Task for ${sourceCategory}`;
+    });
+
+    const saveButton = document.querySelector('.create-task-btn');
+    saveButton.addEventListener('click', function () {
+        const taskName = createTaskModal.querySelector('#name').value;
+
+        if (taskName.trim() === '') {
+            alert('Please enter a task name.');
+            return;
+        }
+
+        fetch(`/create-task/${deskId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify({
+                name: taskName,
+                status: sourceCategory,
+            }),
         })
-        .catch(error => console.error('Error:', error));
+            .then((response) => {
+                if (response.ok) {
+                    alert('Task created successfully!');
+                } else {
+                    alert('Error creating task.');
+                }
+            })
+            .catch((error) => console.error('Error:', error));
+
+        const modalInstance = bootstrap.Modal.getInstance(createTaskModal);
+        modalInstance.hide();
+    });
 });

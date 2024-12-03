@@ -68,5 +68,5 @@ Route::middleware('auth')->group(function () {
     Route::resource('desk', DeskController::class);
 
     Route::post('/set-tasks/{deskId}', [AjaxController::class, 'setTasks'])->name('setTasks');
-    Route::post('/create-task/{deskId}', [AjaxController::class, 'createTask'])->name('createTask');
+    Route::post('/create-task/{deskId}', [AjaxController::class, 'createTask']);
 });
