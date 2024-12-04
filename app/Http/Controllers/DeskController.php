@@ -48,7 +48,7 @@ class DeskController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable' ,'string', 'max:1250'],
-            'username' => ['string', 'max:255', 'exists:users,name'],
+            'username' => ['nullable','string', 'max:255', 'exists:users,name'],
         ]);
 
         if (!auth()->check()) {
@@ -58,7 +58,7 @@ class DeskController extends Controller
         $desk = Desk::create($request->only(['name', 'description']));
         $desk->save();
         $user->desks()->attach($desk->id);
-        if ($request->username !== '') {
+        if ($request->username !== '' && $request->username != null) {
             $otherUser = User::where('name',$request->username)->first();
             $otherUser->desks()->attach($desk->id);
         }
@@ -76,7 +76,7 @@ class DeskController extends Controller
         $request->validate([
             'name' => ['string', 'max:255'],
             'description' => ['nullable' ,'string', 'max:1250'],
-            'username' => ['string', 'max:255', 'exists:users,name']
+            'username' => ['nullable', 'string', 'max:255', 'exists:users,name']
         ]);
         $desk = Desk::find($id);
         if ($request->name !== '') {
@@ -85,7 +85,7 @@ class DeskController extends Controller
         if ($request->description !== '') {
             $desk->update($request->only(['description']));
         }
-        if ($request->username !== '') {
+        if ($request->username !== '' && $request->username != null) {
             $user = User::where('name',$request->username)->first();
             $user->desks()->attach($desk->id);
         }
