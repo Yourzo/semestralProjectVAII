@@ -18,7 +18,10 @@
 
                             <ul class="list-group list-group-flush draggable-list min-height-drag" data-column="todo">
                                 @foreach($todo as $task)
-                                    <li draggable="true" data-task-id="{{$task->id}}" class="list-group-item desk-tiles">{{$task->name}}</li>
+                                    <li draggable="true" data-task-id="{{$task->id}}" class="list-group-item desk-tiles">
+                                        {{$task->name}}
+                                        <i class="bi bi-trash3-fill float-end delete-task-btn"></i>
+                                    </li>
                                 @endforeach
                             </ul>
                             <ul class="list-group list-group-flush">
@@ -37,7 +40,10 @@
                         <div class="list-div mt-1">
                             <ul class="list-group list-group-flush draggable-list min-height-drag" data-column="doing">
                                 @foreach($doing as $task)
-                                    <li draggable="true" data-task-id="{{$task->id}}" class="list-group-item desk-tiles">{{$task->name}}</li>
+                                    <li draggable="true" data-task-id="{{$task->id}}" class="list-group-item desk-tiles">
+                                        {{$task->name}}
+                                        <i class="bi bi-trash3-fill float-end delete-task-btn"></i>
+                                    </li>
                                 @endforeach
                             </ul>
                             <ul class="list-group list-group-flush">
@@ -56,7 +62,10 @@
                         <div class="list-div mt-1">
                             <ul class="list-group list-group-flush draggable-list min-height-drag" data-column="done" >
                                 @foreach($done as $task)
-                                    <li draggable="true" data-task-id="{{$task->id}}" class="list-group-item desk-tiles">{{$task->name}}</li>
+                                    <li draggable="true" data-task-id="{{$task->id}}" class="list-group-item desk-tiles">
+                                        {{$task->name}}
+                                        <i class="bi bi-trash3-fill float-end delete-task-btn"></i>
+                                    </li>
                                 @endforeach
                             </ul>
                             <ul class="list-group list-group-flush">
@@ -70,7 +79,10 @@
             </div>
         </div>
     </div>
-    @vite('resources/js/dragAndDrop.js')
-    @vite('resources/js/createTask.js')
+    @push('scripts')
+        @vite('resources/js/dragAndDrop.js')
+        @vite('resources/js/createTask.js')
+        @vite('resources/js/deleteTask.js')
+    @endpush
     @include('modals.create-task')
 </x-app-layout>

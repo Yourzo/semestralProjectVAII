@@ -18,9 +18,10 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable()->constrained();
             $table->string('name');
             $table->string('description')->nullable();
-            $table->enum('status', ['todo', 'done', 'doing']);
+            $table->enum('status', ['todo', 'done', 'doing'])->nullable();
         });
-    }
+
+        }
 
     /**
      * Reverse the migrations.

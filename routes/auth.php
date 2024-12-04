@@ -69,4 +69,5 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/set-tasks/{deskId}', [AjaxController::class, 'setTasks'])->name('setTasks');
     Route::post('/create-task/{deskId}', [AjaxController::class, 'createTask']);
+    Route::delete('/delete-task/{taskId}', [AjaxController::class, 'deleteTask']);
 });
