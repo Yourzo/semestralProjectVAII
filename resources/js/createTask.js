@@ -1,3 +1,6 @@
+import {butEventListener} from "./deleteTask.js";
+import {listAddEventListeners} from "./dragAndDrop.js";
+
 document.addEventListener('DOMContentLoaded', function () {
     const createTaskModal = document.getElementById('createTaskModal');
     let sourceCategory = '';
@@ -55,7 +58,8 @@ function appendTaskToColumn(task) {
     newTaskElement.setAttribute('draggable', 'true');
     newTaskElement.setAttribute('data-task-id', task.id);
     newTaskElement.classList.add('list-group-item', 'desk-tiles');
-    newTaskElement.textContent = task.name;
-
+    newTaskElement.innerHTML= task.name + '<i class="bi bi-trash3-fill float-end delete-task-btn"></i>';
     column.appendChild(newTaskElement);
+    butEventListener(newTaskElement.querySelector('.delete-task-btn'));
+    listAddEventListeners(column);
 }

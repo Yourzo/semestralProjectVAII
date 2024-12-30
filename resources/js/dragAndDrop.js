@@ -1,5 +1,9 @@
 let lists = document.querySelectorAll('.draggable-list');
 lists.forEach(list => {
+   listAddEventListeners(list);
+});
+
+export function listAddEventListeners(list) {
     list.addEventListener('dragover', function(event) {
         event.preventDefault();
     });
@@ -13,7 +17,7 @@ lists.forEach(list => {
         draggedElement.classList.remove('dragging');
         updateDeskOrder(list, draggedElement);
     });
-});
+}
 
 document.querySelectorAll('li').forEach(item => {
     item.addEventListener('dragstart', function(event) {

@@ -1,16 +1,22 @@
+
+
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.delete-task-btn').forEach(button => {
-        button.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            const taskId = this.closest('li').getAttribute('data-task-id');
-
-            if (confirm('Are you sure you want to delete this task?')) {
-                deleteTask(taskId, this.closest('li'));
-            }
-        });
+        butEventListener(button);
     });
 });
+
+export function butEventListener(button) {
+    button.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const taskId = this.closest('li').getAttribute('data-task-id');
+
+        if (confirm('Are you sure you want to delete this task?')) {
+            deleteTask(taskId, this.closest('li'));
+        }
+    });
+}
 
 function deleteTask(taskId, taskElement) {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
