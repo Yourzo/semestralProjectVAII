@@ -29,7 +29,7 @@ document.querySelectorAll('li').forEach(item => {
     });
 });
 
-//AJAX:
+//AJAX to update after move:
 function updateDeskOrder(list, draggedElement) {
     const taskId = draggedElement.getAttribute('data-task-id');
     const destColumn = list.getAttribute('data-column');

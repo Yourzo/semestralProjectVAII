@@ -46,7 +46,7 @@ class DeskController extends Controller
     public function store(Request $request) : RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', 'unique:desks'],
             'description' => ['nullable' ,'string', 'max:1250'],
             'username' => ['nullable','string', 'max:255', 'exists:users,name'],
         ]);
@@ -68,13 +68,15 @@ class DeskController extends Controller
     public function edit(int $id): View
     {
         $desk = Desk::find($id);
-        return view('desk.edit', compact('desk'));
+        $oldName = $desk->name;
+        $oldDescription = $desk->description;
+        return view('desk.edit', compact('desk', 'oldName', 'oldDescription'));
     }
 
     public function update(Request $request, int $id): RedirectResponse
     {
         $request->validate([
-            'name' => ['string', 'max:255'],
+            'name' => ['string', 'max:255', 'unique:desks,name,'.$id, 'required'],
             'description' => ['nullable' ,'string', 'max:1250'],
             'username' => ['nullable', 'string', 'max:255', 'exists:users,name']
         ]);

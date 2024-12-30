@@ -28,6 +28,11 @@
                         </div>
                     </li>
               @endforeach
+                <li class="d-flex justify-content-center mt-1 border border-dark rounded p-3 list-group-item">
+                    <a href="{{route('desk.create')}}" class="link btn p-0 justify">
+                        <i class="bi bi-plus-circle"></i>
+                    </a>
+                </li>
             </ol>
         </div>
     </div>
