@@ -85,3 +85,57 @@ ol {
     margin-left: auto;
     float: right;
 }
+
+.profile-container {
+    flex-direction: column;
+    align-items: baseline;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto auto;
+    column-gap: 5px;
+    row-gap: 30px;
+    justify-items: start;
+    justify-content: start;
+    width: max-content;
+    grid-template-areas:
+        "profile-picture profile-picture"
+        "label1 field1"
+        "label2 field2";
+}
+
+.item-grid-profile-picture {
+    grid-area: profile-picture;
+    text-align: center;
+}
+
+.item-grid-label2 {
+    grid-area: label2;
+}
+
+.item-grid-label1 {
+    grid-area: label1;
+}
+
+.item-grid-field1 {
+    grid-area: field1;
+}
+
+.item-grid-field2 {
+    grid-area: field2;
+}
+
+.item-grid-label1, .item-grid-label2 {
+    text-align: left;
+    padding-right: 10px;
+}
+
+.item-grid-field1, .item-grid-field2 {
+    text-align: left;
+}
+
+.profile-grid-elem {
+    display: inline;
+}
