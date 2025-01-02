@@ -21,6 +21,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/searchUser/{name}', [FriendshipController::class, 'search'])->name('search');
     Route::post('/addRequest', [FriendshipController::class, 'addRequest'])->name('addRequest');
+
+    Route::post('/acceptRequest/{user}', [FriendshipController::class, 'acceptRequest'])->name('accept-request');
+
+    Route::post('/removeFriend/{friend}', [FriendshipController::class, 'removeFriend'])->name('remove-friend');
 });
 
 require __DIR__.'/auth.php';

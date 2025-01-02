@@ -28,7 +28,7 @@ class ProfileController extends Controller
         })->get();
 
         $requests = User::whereHas('friendship_requests', function ($query) use ($id) {
-            $query->where('user_id', $id);
+            $query->where('friend_id', $id);
         })->get();
 
         return view('dashboard.dashboard', compact('friends', 'requests'));
