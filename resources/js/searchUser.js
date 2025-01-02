@@ -34,7 +34,7 @@ document.getElementById('searchButton').addEventListener('click', function () {
                         const userId = this.getAttribute('data-user-id');
 
                         fetch('/addRequest', {
-                            method: 'GET',
+                            method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
                                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
@@ -48,7 +48,8 @@ document.getElementById('searchButton').addEventListener('click', function () {
                                 } else {
                                     alert('Error adding friend.');
                                 }
-                            });
+                            })
+                            .then(result => {location.reload(true)})
                     });
                 });
             } else {
