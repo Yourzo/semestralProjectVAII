@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +14,34 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+
+    /**
+     * Show user profile in this cute dashboard.
+     */
+    public function dashboard(): View
+    {
+        $id = Auth::user()->id;
+
+        $friends = User::whereHas('friendships', function ($query) use ($id) {
+            $query->where('user_id1', $id)
+                ->orWhere('user_id2', $id);
+        })->get();
+
+        $requests = User::whereHas('friendship_requests', function ($query) use ($id) {
+            $query->where('user_id', $id);
+        })->get();
+
+        return view('dashboard.dashboard', compact('friends', 'requests'));
+    }
+
+    /**
+     * Search for users.
+     */
+    public function users(): JsonResponse
+    {
+        return response()->json(User::all());
+    }
+
     /**
      * Update the user's profile picture.
      */

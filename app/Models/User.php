@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -48,7 +48,17 @@ class User extends Authenticatable
         ];
     }
 
-    public function desks() :BelongsToMany
+    public function friendships(): HasMany
+    {
+        return $this->hasMany(Friendship::class, 'user_id1');
+    }
+
+    public function friendship_requests(): HasMany
+    {
+        return $this->hasMany(FriendshipRequest::class, 'user_id');
+    }
+
+    public function desks(): BelongsToMany
     {
         return $this->belongsToMany(
             Desk::class,

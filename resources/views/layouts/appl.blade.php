@@ -11,7 +11,8 @@
 
     <title>{{ config('app.name', 'Vrello') }}</title>
 
-    @vite(['resources/css/main.css', 'resources/js/app.js','resources/js/dragAndDrop.js', 'resources/js/createTask.js', 'resources/js/deleteTask.js'])
+    @vite(['resources/css/main.css', 'resources/js/app.js','resources/js/dragAndDrop.js', 'resources/js/createTask.js', 'resources/js/deleteTask.js',
+            'resources/js/searchUser.js'])
 </head>
 <body>
 @include('layouts.navbar')
