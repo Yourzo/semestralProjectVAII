@@ -70,17 +70,14 @@ class FriendshipController extends Controller
 
     public function addRequest(Request $request) : JsonResponse
     {
-        Log::info('addRequest');
         $user = auth()->user()->id;
         if ($request->get('user_id') === $user){
             return response()->json(['success' => false]);
         }
-        Log::info('addRequest2');
         FriendshipRequest::create([
             'user_id' => $user,
             'friend_id' => $request->get('user_id')]
         );
-        Log::info('addRequest3');
         return response()->json(['success' => true]);
     }
 }
