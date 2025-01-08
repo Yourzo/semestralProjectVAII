@@ -15,6 +15,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const modalTitle = createTaskModal.querySelector('.modal-title');
         modalTitle.textContent = `Create Task for ${sourceCategory}`;
+
+        createTaskModal.removeAttribute('inert');
+    });
+
+    createTaskModal.addEventListener('hidden.bs.modal', function () {
+        createTaskModal.setAttribute('inert', 'true');
     });
 
     const saveButton = document.querySelector('.create-task-btn');

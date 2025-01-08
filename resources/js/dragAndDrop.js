@@ -12,10 +12,25 @@ export function listAddEventListeners(list) {
         event.preventDefault();
 
         const draggedElement = document.querySelector('.dragging');
+        if (!draggedElement) {
+            return;
+        }
         list.appendChild(draggedElement);
 
         draggedElement.classList.remove('dragging');
         updateDeskOrder(list, draggedElement);
+    });
+
+    list.addEventListener('dragstart', function(event) {
+        if (event.target.tagName === 'LI') {
+            event.target.classList.add('dragging');
+        }
+    });
+
+    list.addEventListener('dragend', function(event) {
+        if (event.target.tagName === 'LI') {
+            event.target.classList.remove('dragging');
+        }
     });
 }
 
@@ -29,7 +44,6 @@ document.querySelectorAll('li').forEach(item => {
     });
 });
 
-//AJAX to update after move:
 function updateDeskOrder(list, draggedElement) {
     const taskId = draggedElement.getAttribute('data-task-id');
     const destColumn = list.getAttribute('data-column');

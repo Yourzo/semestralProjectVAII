@@ -7,6 +7,7 @@
 
             <div class="col">
                 <div class="d-flex gap-4">
+
                     <!-- To Do Column -->
                     <div class="desk-columns min-vh-100-custom flex-column" data-desk-id="{{$deskId}}">
                         <div class="d-flex justify-content-between align-items-center">
@@ -15,7 +16,6 @@
                             </div>
                         </div>
                         <div class="list-div mt-1">
-
                             <ul class="list-group list-group-flush draggable-list min-height-drag" data-column="todo">
                                 @foreach($todo as $task)
                                     <li draggable="true" data-task-id="{{$task->id}}" class="list-group-item desk-tiles">
