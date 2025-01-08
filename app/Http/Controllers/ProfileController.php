@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Friendship;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -22,15 +23,11 @@ class ProfileController extends Controller
     {
         $id = Auth::user()->id;
 
-        $friends = User::whereHas('friendships', function ($query) use ($id) {
-            $query->where('user_id1', $id)
-                ->orWhere('user_id2', $id);
-        })->get();
+        $friends = Friendship::getFriends($id);
 
         $requests = User::whereHas('friendship_requests', function ($query) use ($id) {
             $query->where('friend_id', $id);
         })->get();
-
         return view('dashboard.dashboard', compact('friends', 'requests'));
     }
 

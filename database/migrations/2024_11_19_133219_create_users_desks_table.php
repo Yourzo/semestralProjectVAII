@@ -24,6 +24,8 @@ return new class extends Migration
             $table->foreign('desk_id')
                 ->references('id')
                 ->on('desks')->cascadeOnDelete();
+
+            $table->enum('permission', ['owner', 'read', 'edit'])->default('owner');
         });
     }
 

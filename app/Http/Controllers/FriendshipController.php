@@ -63,7 +63,7 @@ class FriendshipController extends Controller
             ->get(['id', 'name']);
 
         $users = $users->filter(function ($user) {
-            return $user->name !== Auth::user()->name;
+            return $user !== Auth::user();
         });
         return response()->json($users);
     }

@@ -8,7 +8,7 @@
     <div class="mt-6 space-y-6">
         <ol class="list-group">
             @forelse($requests as $request)
-                <li class="list-group-item">
+                <li class="list-group-item mt-2">
                     <div class="d-flex align-items-center w-100">
                         <form method="post" action="{{route('accept-request', ['user' => $request->id])}}" class="w-100">
                             @csrf

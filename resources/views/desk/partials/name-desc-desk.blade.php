@@ -9,11 +9,20 @@
     old('description', $desk->description ?? '')
     }}</textarea>
 </div>
-
-<div class="input-group mb-3">
-    <span class="input-group-text">Add user to desk:</span>
-    <input type="text" name="username" class="form-control" aria-label="Username:" aria-describedby="basic-addon1" value="{{ old('username') }}">
-
+<div>
+    <header>
+        <h3 class="text-gray-950">
+            {{__('add friend to the desk')}}
+        </h3>
+    </header>
+    <ol class="list-group">
+        @foreach($users as $user)
+            <li class="list-group-item d-flex">
+                <span>{{$user->name}}</span>
+                <input type="checkbox" name="selected_user[]" value="{{$user->id}}">
+            </li>
+        @endforeach
+    </ol>
 </div>
 <button type="submit" class="btn btn-light mt-2">Confirm</button>
 @if ($errors->any())

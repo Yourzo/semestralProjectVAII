@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Friendship;
 use App\Models\Task;
 use App\Models\User;
 use App\Models\Desk;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class DeskController extends Controller
 {
+
     public function index(): View
     {
         $desks = User::find(auth()->id())->desks;
@@ -40,7 +43,9 @@ class DeskController extends Controller
 
     public function create() : View
     {
-        return view('desk.create');
+        $id = Auth::user()->id;
+        $users = Friendship::getFriends($id);
+        return view('desk.create', compact('users'));
     }
 
     public function store(Request $request) : RedirectResponse
@@ -56,6 +61,11 @@ class DeskController extends Controller
         }
         $user = User::find(auth()->id());
         $desk = Desk::create($request->only(['name', 'description']));
+        $selectedUsers = $request->input('selected_users');
+        for ($i = 0; $i < count($selectedUsers); $i++) {
+            $user = User::where('id', $selectedUsers[$i])->first();
+            $user->desks()->atach($desk->id);
+        }
         $desk->save();
         $user->desks()->attach($desk->id);
         if ($request->username !== '' && $request->username != null) {
@@ -65,12 +75,14 @@ class DeskController extends Controller
         return redirect()->route('desk.show', ['desk' => $desk->id]);
     }
 
+    //TODO create logic of when user is already in desk that he's already marked
     public function edit(int $id): View
     {
         $desk = Desk::find($id);
         $oldName = $desk->name;
         $oldDescription = $desk->description;
-        return view('desk.edit', compact('desk', 'oldName', 'oldDescription'));
+        $users = Friendship::getFriends($id);
+        return view('desk.edit', compact('desk', 'oldName', 'oldDescription', 'users'));
     }
 
     public function update(Request $request, int $id): RedirectResponse
@@ -80,6 +92,8 @@ class DeskController extends Controller
             'description' => ['nullable' ,'string', 'max:1250'],
             'username' => ['nullable', 'string', 'max:255', 'exists:users,name']
         ]);
+
+
         $desk = Desk::find($id);
         if ($request->name !== '') {
             $desk->update($request->only(['name']));
@@ -91,6 +105,12 @@ class DeskController extends Controller
             $user = User::where('name',$request->username)->first();
             $user->desks()->attach($desk->id);
         }
+        $selectedUsers = $request->input('selected_users');
+        for ($i = 0; $i < count($selectedUsers); $i++) {
+            $user = User::where('id', $selectedUsers[$i])->first();
+            $user->desks()->atach($desk->id);
+        }
+
         $desk->save();
         return redirect()->route('desk.show', ['desk' => $id]);
     }

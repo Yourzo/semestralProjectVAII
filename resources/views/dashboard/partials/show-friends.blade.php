@@ -9,7 +9,7 @@
         <ol class="list-group">
             @forelse($friends as $friend)
                 <div class="d-flex align-items-center w-100">
-                    <form method="post" action="{{route('remove-friend', ['friend' => $friend->id])}}" class="w-100">
+                    <form method="post" action="{{route('remove-friend', ['friend' => $friend->id])}}" class="w-100 mt-2">
                         @csrf
                         @method('POST')
                         <span>{{__($friend->name)}}</span>
