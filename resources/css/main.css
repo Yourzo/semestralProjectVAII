@@ -140,4 +140,14 @@ ol {
     display: inline;
 }
 
+.h5-friends {
+    background-color: white;
+    border-radius: 5px;
+    padding-left: 1rem;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
 
+.m-checkboxes {
+    margin: 2px;
+}

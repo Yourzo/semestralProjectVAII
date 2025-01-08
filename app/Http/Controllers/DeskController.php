@@ -61,12 +61,9 @@ class DeskController extends Controller
         }
         $user = User::find(auth()->id());
         $desk = Desk::create($request->only(['name', 'description']));
-        $selectedUsers = $request->input('selected_users');
-        for ($i = 0; $i < count($selectedUsers); $i++) {
-            $user = User::where('id', $selectedUsers[$i])->first();
-            $user->desks()->atach($desk->id);
-        }
-        $desk->save();
+
+        $this->saveUserPermissions($request, $desk, 'edit');
+        $this->saveUserPermissions($request, $desk, 'read');
         $user->desks()->attach($desk->id);
         if ($request->username !== '' && $request->username != null) {
             $otherUser = User::where('name',$request->username)->first();
@@ -82,7 +79,22 @@ class DeskController extends Controller
         $oldName = $desk->name;
         $oldDescription = $desk->description;
         $users = Friendship::getFriends($id);
-        return view('desk.edit', compact('desk', 'oldName', 'oldDescription', 'users'));
+        $userIds = Desk::find($id)->users()->withPivot('user_id')->pluck('user_id');
+
+        $editors = User::whereHas('desks', function ($query) use ($userIds) {
+            $query->whereIn('desk_id', $userIds)
+            ->where('permission', 'edit')
+            ->where('user_id', '!=', auth()->id());
+        })->get();
+
+        $readers = User::whereHas('desks', function ($query) use ($userIds) {
+            $query->whereIn('desk_id', $userIds)
+                ->where('permission', 'read')
+                ->where('user_id', '!=', auth()->id());
+        })->get();
+
+        return view('desk.edit', compact('desk', 'oldName',
+            'oldDescription', 'users', 'editors', 'readers'));
     }
 
     public function update(Request $request, int $id): RedirectResponse
@@ -105,13 +117,34 @@ class DeskController extends Controller
             $user = User::where('name',$request->username)->first();
             $user->desks()->attach($desk->id);
         }
-        $selectedUsers = $request->input('selected_users');
-        for ($i = 0; $i < count($selectedUsers); $i++) {
-            $user = User::where('id', $selectedUsers[$i])->first();
-            $user->desks()->atach($desk->id);
-        }
 
-        $desk->save();
+        $this->saveUserPermissions($request, $desk, 'edit');
+        $this->saveUserPermissions($request, $desk, 'read');
         return redirect()->route('desk.show', ['desk' => $id]);
     }
+
+    /**
+     * @param Request $request given request
+     * @param Desk $desk on which desk
+     * @param string $key which desk permission will be synchronized
+     * synchronizes user permissions on given desk
+     */
+
+    private function saveUserPermissions(Request $request, $desk, $key): void
+    {
+        $selectedEdit = $request->input('selected_'.$key, []);
+        $editUsers = [];
+        foreach ($selectedEdit as $userId) {
+            $user = User::find($userId);
+            if ($user) {
+                $editUsers[$userId] = ['permission' => $key];
+            }
+        }
+        $desk->users()->syncWithoutDetaching($editUsers);
+        $currentEditUsers = $desk->users()->wherePivot('permission', $key)
+            ->pluck('user_id')->toArray();
+        $desk->users()->detach(array_diff($currentEditUsers, array_keys($editUsers)));
+        $desk->save();
+    }
+
 }

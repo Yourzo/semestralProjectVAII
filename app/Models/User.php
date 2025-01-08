@@ -64,6 +64,7 @@ class User extends Authenticatable
             Desk::class,
             'users_desks',
             'user_id',
-            'desk_id');
+            'desk_id')
+            ->withPivot('permission');
     }
 }

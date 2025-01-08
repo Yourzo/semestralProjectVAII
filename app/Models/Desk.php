@@ -14,7 +14,7 @@ class Desk extends Model
             User::class,
             'users_desks',
             'desk_id',
-            'user_id'
-        );
+            'user_id')
+            ->withPivot('permission');
     }
 }
