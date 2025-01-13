@@ -2,6 +2,14 @@ ol {
     list-style-type: none;
 }
 
+.max-reset-pass-width {
+    max-width: 8cm;
+}
+
+.form-background-color {
+    background-color: lightgrey;
+}
+
 .carousel-height {
     max-height: 8cm;
 }
