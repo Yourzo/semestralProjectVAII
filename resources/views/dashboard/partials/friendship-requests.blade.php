@@ -23,7 +23,7 @@
                     </div>
                 </li>
             @empty
-                <span>{{__("TEEEEHEEEE YOU GOT NO FRIEND REQUEST")}}</span>
+                <span>{{__("You have no friend requests")}}</span>
             @endforelse
         </ol>
     </div>
