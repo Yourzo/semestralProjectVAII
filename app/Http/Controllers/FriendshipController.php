@@ -59,12 +59,13 @@ class FriendshipController extends Controller
         if (empty($name)) {
             return response()->json([]);
         }
-        $users = User::where('name', 'like', '%' . $name . '%')
-            ->get(['id', 'name']);
+        $authUserId = Auth::id();
+        $friendIds = Friendship::getFriends($authUserId)->pluck('id')->toArray();
 
-        $users = $users->filter(function ($user) {
-            return $user !== Auth::user();
-        });
+        $users = User::where('name', 'like', '%' . $name . '%')
+            ->whereNotIn('id', $friendIds)
+            ->where('id', '<>', $authUserId)
+            ->get(['id', 'name']);
         return response()->json($users);
     }
 

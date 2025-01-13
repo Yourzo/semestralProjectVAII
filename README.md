@@ -7,7 +7,7 @@ it's laravel project
 * download the project by running `git clone https://github.com/Yourzo/semestralProjectVAII`
 * go to project folder
 * create copy of .env.example called .env by running `cp .env.example .env`
-* install all npm dependencies with `npm install && npm run build`
+* install and build all npm dependencies with `npm install && npm run build`
 * install all dependencies by running `composer install`
 * build docker-compose and all needed with: `php artisan sail:install` (choose mysql)
 * start docker

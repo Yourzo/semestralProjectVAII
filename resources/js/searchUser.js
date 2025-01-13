@@ -58,7 +58,7 @@ if (searchBut) {
                         });
                     });
                 } else {
-                    resultsContainer.innerHTML = '<p>No users found.</p>';
+                    resultsContainer.innerHTML = '<p>No users found. (You might already requested)</p>';
                 }
             })
             .catch(error => {

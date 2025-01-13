@@ -22,7 +22,7 @@ class Friendship extends Model
     {
         $friends = Friendship::where('user_id1', $id)
             ->orWhere('user_id2', $id)
-            ->with(['user', 'friend']) // Eager load related users
+            ->with(['user', 'friend'])
             ->get()
             ->map(function ($friendship) use ($id) {
                 return $friendship->user_id1 == $id
