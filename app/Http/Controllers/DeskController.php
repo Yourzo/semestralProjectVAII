@@ -22,6 +22,7 @@ class DeskController extends Controller
     public function show(Request $request) : View
     {
         $deskId = request('desk');
+        $desk = Desk::find($deskId);
         $allDesks = User::find(auth()->id())->desks;
         $userIds = Desk::find($deskId)->users()->withPivot('user_id')->pluck('user_id');
         $allDeskUsers = User::whereIn('id', $userIds)->where('id', '!=', auth()->id())->get();
@@ -30,18 +31,20 @@ class DeskController extends Controller
         $doing = Task::where([['desk_id', $deskId], ['status', 'doing']])->get();
         $done = Task::where([['desk_id', $deskId], ['status', 'done']])->get();
 
-        $val = Desk::find($deskId)->users()
+        $val = $desk->users()
             ->where('permission', 'read')
             ->orWhere('permission', 'owner')
             ->withPivot('user_id')
             ->pluck('user_id');
+
+        $deskName = $desk->name;
 
         $canEdit = $val->contains(auth()->id());
 
         $noOwner = $request->noOwner;
         return view('desk.show', compact('deskId',
             'allDesks', 'allDeskUsers',
-                'todo', 'doing', 'done', 'canEdit', 'noOwner'
+                'todo', 'doing', 'done', 'canEdit', 'noOwner', 'deskName'
         ));
     }
 

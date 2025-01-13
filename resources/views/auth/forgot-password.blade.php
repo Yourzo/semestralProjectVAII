@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <x-slot:title>{{__('Forgot password')}}</x-slot:title>
     <div class="d-flex align-items-center justify-content-center min-vh-100-custom">
         <div class="form-background-color p-3  rounded border border-dark max-reset-pass-width">
     <div class="mb-4 text-sm text-gray-600">

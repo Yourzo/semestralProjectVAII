@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <x-slot:title>{{__('Login')}}</x-slot:title>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
     <div class="d-flex align-items-center justify-content-center min-vh-100-custom">

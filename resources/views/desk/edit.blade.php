@@ -1,4 +1,5 @@
 <x-app-layout>
+    <x-slot:title>{{__('Edit desk')}}</x-slot:title>
     <x-auth-session-status class="mb-4" :status="session('status')" />
     <div class="d-flex justify-content-center">
         <div class="mt-5 bg-secondary rounded border border-dark">

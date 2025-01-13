@@ -1,4 +1,5 @@
 <x-app-layout>
+    <x-slot:title>{{__('Desks')}}</x-slot:title>
     <div class="d-flex justify-content-center m-4" >
         <h1>
             <span>

@@ -1,4 +1,5 @@
 <x-app-layout>
+    <x-slot:title>{{$deskName}}</x-slot:title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="container-fluid">
         <div class="row flex-nowrap">

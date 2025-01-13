@@ -1,4 +1,5 @@
 <x-app-layout>
+    <x-slot:title>{{__('Home')}}</x-slot:title>
     <x-footer>
 <!--Carousel add screenshot of actual working app like to show potential customers-->
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
