@@ -74,7 +74,8 @@
             </div>
         </div>
     </div>
-    <div class="container mt-5 ideas-item d-flex justify-content-center align-items-center">
+    <div class="container mt-5 ideas-item d-flex justify-content-center align-items-center" id="other-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/fkKBJQ0K9xE" title="How to Trick Your Brain into Doing Hard Things" frameborder="0" allowfullscreen></iframe>
     </div>
 </div>
     </x-footer>
