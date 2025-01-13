@@ -6,6 +6,10 @@ document.addEventListener('DOMContentLoaded', function () {
     let sourceCategory = '';
     let deskId = "";
 
+    if (!createTaskModal) {
+        return;
+    }
+
     createTaskModal.addEventListener('show.bs.modal', function (event) {
         const triggerElement = event.relatedTarget;
         sourceCategory = triggerElement.getAttribute('data-bs-whatever');

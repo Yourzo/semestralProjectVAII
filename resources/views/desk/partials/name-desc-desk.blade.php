@@ -8,9 +8,7 @@
 
 <div class="input-group mb-2">
     <span class="input-group-text">Description:</span>
-    <textarea class="form-control" name="description" aria-label="Description:" maxlength="1250">
-        {{old('description', $desk->description ?? '')}}
-    </textarea>
+    <textarea class="form-control" name="description" aria-label="Description:" maxlength="1250">{{old('description', $desk->description ?? '')}}</textarea>
 </div>
 <div>
     <header>
@@ -31,10 +29,10 @@
                 <span>{{$user->name}}</span>
                 <div class="ms-auto d-flex align-items-center gap-2">
                     <input type="checkbox" name="selected_edit[]" value="{{$user->id}}"
-                           {{isset($editors) && $editors->contains('id', $user->id) ? 'checked' : ''}}
+                           {{isset($editors) && $editors->contains($user->id) ? 'checked' : ''}}
                            class="ms-auto m-checkboxes">
                     <input type="checkbox" name="selected_read[]" value="{{$user->id}}"
-                        {{isset($readers) && $readers->contains('id', $user->id) ? 'checked' : ''}}
+                        {{isset($readers) && $readers->contains($user->id) ? 'checked' : ''}}
                         class="ms-auto m-checkboxes">
                 </div>
             </li>

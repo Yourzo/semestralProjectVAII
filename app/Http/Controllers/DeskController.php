@@ -29,9 +29,19 @@ class DeskController extends Controller
         $todo = Task::where([['desk_id', $deskId], ['status', 'todo']])->get();
         $doing = Task::where([['desk_id', $deskId], ['status', 'doing']])->get();
         $done = Task::where([['desk_id', $deskId], ['status', 'done']])->get();
+
+        $val = Desk::find($deskId)->users()
+            ->where('permission', 'read')
+            ->orWhere('permission', 'owner')
+            ->withPivot('user_id')
+            ->pluck('user_id');
+
+        $canEdit = $val->contains(auth()->id());
+
+        $noOwner = $request->noOwner;
         return view('desk.show', compact('deskId',
             'allDesks', 'allDeskUsers',
-                'todo', 'doing', 'done'
+                'todo', 'doing', 'done', 'canEdit', 'noOwner'
         ));
     }
 
@@ -72,27 +82,21 @@ class DeskController extends Controller
         return redirect()->route('desk.show', ['desk' => $desk->id]);
     }
 
-    //TODO create logic of when user is already in desk that he's already marked
-    public function edit(int $id): View
+    public function edit(int $id)
     {
+
         $desk = Desk::find($id);
+        $val = $desk->users()->where('permission', 'owner')->withPivot('user_id')->pluck('user_id');
+        if (!$val->contains(auth()->id())) {
+            return redirect()->route('desk.show', ['desk' => $id, 'noOwner' => true]);
+        }
+
         $oldName = $desk->name;
         $oldDescription = $desk->description;
-        $users = Friendship::getFriends($id);
-        $userIds = Desk::find($id)->users()->withPivot('user_id')->pluck('user_id');
+        $users = Friendship::getFriends(Auth::id());
 
-        $editors = User::whereHas('desks', function ($query) use ($userIds) {
-            $query->whereIn('desk_id', $userIds)
-            ->where('permission', 'edit')
-            ->where('user_id', '!=', auth()->id());
-        })->get();
-
-        $readers = User::whereHas('desks', function ($query) use ($userIds) {
-            $query->whereIn('desk_id', $userIds)
-                ->where('permission', 'read')
-                ->where('user_id', '!=', auth()->id());
-        })->get();
-
+        $editors = $desk->users()->where('permission', 'edit')->withPivot('user_id')->pluck('user_id');
+        $readers = $desk->users()->where('permission', 'read')->withPivot('user_id')->pluck('user_id');
         return view('desk.edit', compact('desk', 'oldName',
             'oldDescription', 'users', 'editors', 'readers'));
     }

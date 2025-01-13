@@ -11,14 +11,15 @@ export function butEventListener(button) {
         e.preventDefault();
 
         const taskId = this.closest('li').getAttribute('data-task-id');
-
+        const hiddenInput = document.getElementById('hiddenInput');
+        const deskId = hiddenInput.value;
         if (confirm('Are you sure you want to delete this task?')) {
-            deleteTask(taskId, this.closest('li'));
+            deleteTask(taskId, this.closest('li'), deskId);
         }
     });
 }
 
-function deleteTask(taskId, taskElement) {
+function deleteTask(taskId, taskElement, deskId) {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
     fetch(`/delete-task/${taskId}`, {
@@ -26,7 +27,10 @@ function deleteTask(taskId, taskElement) {
         headers: {
             'Content-Type': 'application/json',
             'X-CSRF-TOKEN': csrfToken
-        }
+        },
+        body: JSON.stringify({
+            deskId: deskId,
+        })
     })
         .then(response => {
             if (response.ok) {

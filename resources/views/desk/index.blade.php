@@ -16,13 +16,13 @@
                         </a>
                         <div class="d-flex align-items-center gap-3">
                             <a href="{{route('desk.edit', ['desk' => $desk->id])}}" class="link btn p-0">
-                                <i class="fs-4 bi-pencil-fill"></i>
+                                <i class="fs-4 bi-pencil-fill" title="edit"></i>
                             </a>
                             <form method="POST" action="{{route('desk.destroy', ['desk' => $desk->id])}}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="link btn p-0" onclick="return confirm('Are you sure?')">
-                                    <i class="bi bi-trash3-fill"></i>
+                                    <i class="bi bi-trash3-fill" title="delete"></i>
                                 </button>
                             </form>
                         </div>
@@ -30,7 +30,7 @@
               @endforeach
                 <li class="d-flex justify-content-center mt-1 border border-dark rounded p-3 list-group-item">
                     <a href="{{route('desk.create')}}" class="link btn p-0 justify">
-                        <i class="bi bi-plus-circle"></i>
+                        <i class="bi bi-plus-circle" title="add desk"></i>
                     </a>
                 </li>
             </ol>

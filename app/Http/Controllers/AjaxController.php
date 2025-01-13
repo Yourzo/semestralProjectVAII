@@ -11,6 +11,16 @@ class AjaxController extends Controller
 {
     public function setTasks(Request $request, $deskId) : JsonResponse
     {
+        $val = Desk::find($deskId)->users()
+            ->where('permission', 'edit')
+            ->orWhere('permission', 'owner')
+            ->withPivot('user_id')
+            ->pluck('user_id');
+
+        if (!$val->contains(auth()->id())) {
+            return response()->json(['success' => false]);
+        }
+
         $dest_col = $request->dest_column;
         if (!in_array($dest_col, ['todo', 'doing', 'done'])) {
             return response()->json(['success' => false, 'message' => 'Invalid column parameter.']);
@@ -27,12 +37,30 @@ class AjaxController extends Controller
 
     public function deleteTask(Request $request, $taskId) : JsonResponse
     {
+        $id = $request->json(['deskId']);
+        $val = Desk::find($id)->users()
+            ->where('permission', 'edit')
+            ->orWhere('permission', 'owner')
+            ->withPivot('user_id')
+            ->pluck('user_id');
+        if (!$val->contains(auth()->id())) {
+            return response()->json(['success' => false]);
+        }
         Task::where('id', $taskId)->update(['status' => null]);
         return response()->json(['success' => true]);
     }
 
     public function createTask(Request $request, $deskId) : JsonResponse
     {
+        $val = Desk::find($deskId)->users()
+            ->where('permission', 'edit')
+            ->orWhere('permission', 'owner')
+            ->withPivot('user_id')
+            ->pluck('user_id');
+
+        if (!$val->contains(auth()->id())) {
+            return response()->json(['success' => false]);
+        }
         $request->validate(['name' => 'required|string|max:255']);
         $task_col = $request->status;
         if (!in_array($task_col, ['todo', 'doing', 'done'])){
