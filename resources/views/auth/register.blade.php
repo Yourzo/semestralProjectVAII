@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-slot:title>{{__('Register')}}</x-slot:title>
     <div class="d-flex align-items-center justify-content-center min-vh-100-custom">
-    <form method="POST" action="{{ route('register') }}" class="form-background-color p-3 rounded border border-dark">
+    <form method="POST" action="{{ route('register') }}" class="form-background-color p-3 rounded border border-dark shadow">
         @csrf
 
         <!-- Name -->

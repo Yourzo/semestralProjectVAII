@@ -1,9 +1,9 @@
 <x-guest-layout>
     <x-slot:title>{{__('Forgot password')}}</x-slot:title>
     <div class="d-flex align-items-center justify-content-center min-vh-100-custom">
-        <div class="form-background-color p-3  rounded border border-dark max-reset-pass-width">
+        <div class="form-background-color p-3  rounded border border-dark max-reset-pass-width shadow">
     <div class="mb-4 text-sm text-gray-600">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+        {{ __('THIS IS ONLY PLACEHOLDER, JUST TO MAKE IT PRETTY') }}
     </div>
 
     <!-- Session Status -->
