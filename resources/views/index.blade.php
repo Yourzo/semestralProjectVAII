@@ -10,13 +10,13 @@
     </div>
     <div class="carousel-inner carousel-height">
         <div class="carousel-item active">
-            <img src="images/balls.jpg" class="d-block w-100 image-size" alt="...">
+            <img src="{{asset("media/carousel1.jpg")}}" class="d-block w-100 image-size" alt="...">
         </div>
         <div class="carousel-item">
-            <img src="images/dfpsw.jpg" class="d-block w-100 image-size" alt="...">
+            <img src="{{asset("media/carousel2.jpeg")}}" class="d-block w-100 image-size" alt="...">
         </div>
         <div class="carousel-item">
-            <img src="images/street.jpg" class="d-block w-100 image-size" alt="...">
+            <img src="{{asset("media/carousel3.jpeg")}}" class="d-block w-100 image-size" alt="...">
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -75,13 +75,6 @@
         </div>
     </div>
     <div class="container mt-5 ideas-item d-flex justify-content-center align-items-center">
-        <form class="register-width">
-            <div class="mb-3">
-                <label for="email" class="form-label">Get into VRELLO</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
-            </div>
-            <button type="submit" class="btn btn-primary w-100">Register</button>
-        </form>
     </div>
 </div>
     </x-footer>

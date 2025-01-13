@@ -98,6 +98,12 @@ class DeskController extends Controller
         $oldDescription = $desk->description;
         $users = Friendship::getFriends(Auth::id());
 
+        $noFriendsInDesk = $desk->users()->get()->filter(function ($user) use ($users) {
+            return !$users->contains('id', $user->id) && $user->id != auth()->id();
+        });
+        $users = $users->merge($noFriendsInDesk);
+
+
         $editors = $desk->users()->where('permission', 'edit')->withPivot('user_id')->pluck('user_id');
         $readers = $desk->users()->where('permission', 'read')->withPivot('user_id')->pluck('user_id');
         return view('desk.edit', compact('desk', 'oldName',
